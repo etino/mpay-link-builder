@@ -19,7 +19,7 @@
       </div>
 
       <div class="row">
-        <div class="offset-lg-1 col-lg-6 col-md-8 mt-5 mb-0 mb-lg-4">
+        <div class="offset-lg-1 col-lg-8 col-md-12 mt-5 mb-0 mb-lg-4">
           <div class="text-center text-sm-left">
             <p class="lead">Compila e seguenti campi per creare il link.</p>
           </div>
@@ -243,7 +243,7 @@ export default defineComponent({
       },
       copied: false,
       showDefaults: false,
-      active: 1,
+      active: 0,
     }
   },
   methods: {

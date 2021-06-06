@@ -1,12 +1,17 @@
 <template>
-  <BHeader />
-  <BHeaderCentral
-    title="MPay Link Builder"
-    tagline="Utility di creazione URL per link Mpay"
-    followGithubUrl="https://github.com/etino/mpay-link-builder"
-    no-search
-  />
-  <BHeaderNavBar />
+  <header class="it-header-wrapper">
+    <BHeader />
+    <div class="it-nav-wrapper">
+      <BHeaderCentral
+        title="MPay Link Builder"
+        tagline="Utility di creazione URL per link Mpay"
+        followGithubUrl="https://github.com/etino/mpay-link-builder"
+        no-search
+      />
+      <BHeaderNavBar />
+    </div>
+  </header>
+
   <main>
     <router-view v-slot="{ Component }">
       <component :is="Component"></component>

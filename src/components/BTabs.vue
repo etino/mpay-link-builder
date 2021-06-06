@@ -1,6 +1,6 @@
 <script>
 import { provide, computed, ref } from 'vue'
-
+// Reference: https://forum.vuejs.org/t/how-to-access-children-in-vue-3-for-creating-a-tabs-component/108955
 export default {
   name: 'BTabs',
   props: {
