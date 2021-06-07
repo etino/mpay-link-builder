@@ -7,16 +7,27 @@
           <nav class="navbar navbar-expand-lg has-megamenu">
             <button
               class="custom-navbar-toggler"
+              :class="{ 'focus-mouse': toggle }"
               type="button"
               aria-controls="nav0"
-              aria-expanded="false"
+              :aria-expanded="toggle"
               aria-label="Toggle navigation"
               data-target="#nav0"
+              @click="toggleMenu()"
             >
               <BSvgIcon name="it-burger" />
             </button>
-            <div class="navbar-collapsable" id="nav0" style="display: none">
-              <div class="overlay" style="display: none"></div>
+            <div
+              class="navbar-collapsable"
+              :class="{ expanded: toggle }"
+              id="nav0"
+              :style="{ display: toggle ? 'block' : 'none' }"
+            >
+              <div
+                class="overlay"
+                :style="{ display: toggle ? 'block' : 'none' }"
+                @click="toggleMenu()"
+              ></div>
               <div class="close-div sr-only">
                 <button class="btn close-menu" type="button">
                   <span class="it-close"></span>close
@@ -57,12 +68,25 @@
   </div>
 </template>
 
-<script setup>
-import BSvgIcon from './BSvgIcon.vue'
-</script>
-
 <script>
+import BSvgIcon from './BSvgIcon.vue'
+import { ref, watch } from 'vue'
 export default {
+  setup() {
+    const toggle = ref(false)
+
+    function toggleMenu() {
+      toggle.value = !toggle.value
+    }
+
+    return {
+      toggle,
+      toggleMenu,
+    }
+  },
+  components: {
+    BSvgIcon,
+  },
   data() {
     return {
       items: [
@@ -70,6 +94,13 @@ export default {
         { name: 'Info', to: '/about' },
       ],
     }
+  },
+  watch: {
+    $route() {
+      if (this.toggle) {
+        this.toggleMenu()
+      }
+    },
   },
 }
 </script>

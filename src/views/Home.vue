@@ -304,7 +304,6 @@ export default defineComponent({
     },
   },
   mounted() {
-    console.log(this.$route)
     if ('test' in this.$route.query) {
       console.log('test mode')
     }
