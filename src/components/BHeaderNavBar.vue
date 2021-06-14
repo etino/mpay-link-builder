@@ -36,8 +36,8 @@
               <div class="menu-wrapper">
                 <ul class="navbar-nav">
                   <router-link
-                    v-for="(item, index) in items"
-                    :to="item.to"
+                    v-for="(link, index) in links"
+                    :to="link"
                     :key="index"
                     custom
                     v-slot="{ href, navigate, isActive }"
@@ -54,7 +54,7 @@
                         :href="href"
                         @click="navigate"
                       >
-                        {{ item.name }}
+                        {{ $router.resolve(link).name }}
                       </a>
                     </li>
                   </router-link>
@@ -70,7 +70,8 @@
 
 <script>
 import BSvgIcon from './BSvgIcon.vue'
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
+import { mainMenuRoutes } from '../router'
 export default {
   setup() {
     const toggle = ref(false)
@@ -78,22 +79,16 @@ export default {
     function toggleMenu() {
       toggle.value = !toggle.value
     }
+    const links = computed(() => mainMenuRoutes)
 
     return {
+      links,
       toggle,
       toggleMenu,
     }
   },
   components: {
     BSvgIcon,
-  },
-  data() {
-    return {
-      items: [
-        { name: 'Home', to: '/' },
-        { name: 'Info', to: '/about' },
-      ],
-    }
   },
   watch: {
     $route() {
